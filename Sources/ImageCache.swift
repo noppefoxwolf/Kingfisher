@@ -48,32 +48,11 @@ Key for array of cleaned hashes in `userInfo` of `KingfisherDidCleanDiskCacheNot
 */
 public let KingfisherDiskCacheCleanedHashKey = "com.onevcat.Kingfisher.cleanedHash"
 
-/// It represents a task of retrieving image. You can call `cancel` on it to stop the process.
-public typealias RetrieveImageDiskTask = DispatchWorkItem
-
-/**
-Cache type of a cached image.
-
-- None:   The image is not cached yet when retrieving it.
-- Memory: The image is cached in memory.
-- Disk:   The image is cached in disk.
-*/
-public enum CacheType {
-    case none, memory, disk
-    
-    public var cached: Bool {
-        switch self {
-        case .memory, .disk: return true
-        case .none: return false
-        }
-    }
-}
-
-/// `ImageCache` represents both the memory and disk cache system of Kingfisher. 
+/// `ImageCache` represents both the memory and disk cache system of Kingfisher.
 /// While a default image cache object will be used if you prefer the extension methods of Kingfisher, 
 /// you can create your own cache object and configure it as your need. You could use an `ImageCache`
 /// object to manipulate memory and disk cache for Kingfisher.
-open class ImageCache {
+open class ImageCache: ImageCacheType {  
 
     //Memory
     fileprivate let memoryCache = NSCache<NSString, AnyObject>()
@@ -111,8 +90,9 @@ open class ImageCache {
     fileprivate let processQueue: DispatchQueue
     
     /// The default cache.
-    public static let `default` = ImageCache(name: "default")
-    
+    public static let `default`: AnyImageCache = AnyImageCache(ImageCache(name: "default"))
+  
+  
     /// Closure that defines the disk cache path from a given path and cacheName.
     public typealias DiskCachePathClosure = (String?, String) -> String
     

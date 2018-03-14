@@ -44,12 +44,12 @@ public enum KingfisherOptionsInfoItem {
     /// The associated value of this member should be an ImageCache object. Kingfisher will use the specified
     /// cache object when handling related operations, including trying to retrieve the cached images and store
     /// the downloaded image to it.
-    case targetCache(ImageCache)
+    case targetCache(AnyImageCache)
     
     /// Cache for storing and retrieving original image.
     /// Preferred prior to targetCache for storing and retrieving original images if specified.
     /// Only used if a non-default image processor is involved.
-    case originalCache(ImageCache)
+    case originalCache(AnyImageCache)
     
     /// The associated value of this member should be an ImageDownloader object. Kingfisher will use this
     /// downloader to download the images.
@@ -194,17 +194,17 @@ extension Collection where Iterator.Element == KingfisherOptionsInfoItem {
 
 public extension Collection where Iterator.Element == KingfisherOptionsInfoItem {
     /// The target `ImageCache` which is used.
-    public var targetCache: ImageCache {
+    public var targetCache: AnyImageCache {
         if let item = lastMatchIgnoringAssociatedValue(.targetCache(.default)),
             case .targetCache(let cache) = item
         {
             return cache
         }
-        return ImageCache.default
+        return AnyImageCache.default
     }
     
     /// The original `ImageCache` which is used.
-    public var originalCache: ImageCache {
+    public var originalCache: AnyImageCache {
         if let item = lastMatchIgnoringAssociatedValue(.originalCache(.default)),
             case .originalCache(let cache) = item
         {

@@ -69,7 +69,7 @@ public class KingfisherManager {
     public static let shared = KingfisherManager()
     
     /// Cache used by this manager
-    public var cache: ImageCache
+    public var cache: AnyImageCache
     
     /// Downloader used by this manager
     public var downloader: ImageDownloader
@@ -91,7 +91,7 @@ public class KingfisherManager {
         self.init(downloader: .default, cache: .default)
     }
     
-    init(downloader: ImageDownloader, cache: ImageCache) {
+    init(downloader: ImageDownloader, cache: AnyImageCache = ImageCache.default) {
         self.downloader = downloader
         self.cache = cache
     }
