@@ -28,13 +28,9 @@ public enum CacheType {
 
 /// It represents a task of retrieving image. You can call `cancel` on it to stop the process.
 public typealias RetrieveImageDiskTask = DispatchWorkItem
-/// Closure that defines the disk cache path from a given path and cacheName.
-public typealias DiskCachePathClosure = (String?, String) -> String
 
 public protocol ImageCacheType {
   static var `default`: AnyImageCache { get }
-    
-//  init(name: String, path: String?, diskCachePathClosure: DiskCachePathClosure)
   
   @discardableResult
   func retrieveImage(forKey key: String,
@@ -50,4 +46,9 @@ public protocol ImageCacheType {
               completionHandler: (() -> Void)?)
   
   func imageCachedType(forKey key: String, processorIdentifier identifier: String) -> CacheType
+}
+
+extension ImageCacheType {
+  /// Closure that defines the disk cache path from a given path and cacheName.
+  public typealias DiskCachePathClosure = (String?, String) -> String
 }
