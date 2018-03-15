@@ -6,7 +6,7 @@
 //  Copyright © 2018年 Wei Wang. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 /**
  Cache type of a cached image.

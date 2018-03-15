@@ -6,7 +6,7 @@
 //  Copyright © 2018年 Wei Wang. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 class AnyImageCacheBox {
   class var `default`: AnyImageCacheBox { fatalError() }
@@ -57,6 +57,7 @@ class ImageCacheBox<X: ImageCacheType> : AnyImageCacheBox {
 public final class AnyImageCache: ImageCacheType {
   public static var `default`: AnyImageCache { return AnyImageCache.init(box: AnyImageCacheBox.default) }
   
+  @discardableResult
   public func retrieveImage(forKey key: String, options: KingfisherOptionsInfo?, completionHandler: ((Image?, CacheType) -> Void)?) -> RetrieveImageDiskTask? {
     return box.retrieveImage(forKey: key, options: options, completionHandler: completionHandler)
   }

@@ -312,6 +312,9 @@
 		D76BE5C22058E43A0087723D /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10945EB1C526B6C001408EB /* ImageCache.swift */; };
 		D76BE5C32058E43B0087723D /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10945EB1C526B6C001408EB /* ImageCache.swift */; };
 		D76BE5C42058E43B0087723D /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10945EB1C526B6C001408EB /* ImageCache.swift */; };
+		D76BE5C52058EB980087723D /* AnyImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76BE5B92057EEB40087723D /* AnyImageCache.swift */; };
+		D76BE5C62058EB990087723D /* AnyImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76BE5B92057EEB40087723D /* AnyImageCache.swift */; };
+		D76BE5C72058EB990087723D /* AnyImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76BE5B92057EEB40087723D /* AnyImageCache.swift */; };
 		D9638BA01C7DBA660046523D /* ImagePrefetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9638B9F1C7DBA660046523D /* ImagePrefetcher.swift */; };
 		D9638BA11C7DBA660046523D /* ImagePrefetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9638B9F1C7DBA660046523D /* ImagePrefetcher.swift */; };
 		D9638BA21C7DBA660046523D /* ImagePrefetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9638B9F1C7DBA660046523D /* ImagePrefetcher.swift */; };
@@ -1794,6 +1797,7 @@
 				4B6313F61D766BEF0078E017 /* Filter.swift in Sources */,
 				FB402D101EDEAB7E002B62A1 /* FormatIndicatedCacheSerializer.swift in Sources */,
 				182FFF781CC9ACBA004B728D /* NSButton+Kingfisher.swift in Sources */,
+				D76BE5C62058EB990087723D /* AnyImageCache.swift in Sources */,
 				D10946201C526C61001408EB /* KingfisherOptionsInfo.swift in Sources */,
 				D10946211C526C61001408EB /* Resource.swift in Sources */,
 				4BB24C3F1D79215A00CD5F9C /* CacheSerializer.swift in Sources */,
@@ -1869,6 +1873,7 @@
 				D10946171C526C0D001408EB /* ThreadHelper.swift in Sources */,
 				444C03EA1F548F6200990BCC /* Placeholder.swift in Sources */,
 				F78F5EBE1FCDDE42001A9111 /* ImageModifier.swift in Sources */,
+				D76BE5C72058EB990087723D /* AnyImageCache.swift in Sources */,
 				FB402D0F1EDEAB7E002B62A1 /* FormatIndicatedCacheSerializer.swift in Sources */,
 				D10946181C526C0D001408EB /* UIButton+Kingfisher.swift in Sources */,
 			);
@@ -1881,6 +1886,7 @@
 				F78F5EC01FCDDE42001A9111 /* ImageModifier.swift in Sources */,
 				D109462D1C526CF5001408EB /* ImageTransition.swift in Sources */,
 				D76BE5C12058E4390087723D /* ImageCache.swift in Sources */,
+				D76BE5C52058EB980087723D /* AnyImageCache.swift in Sources */,
 				FB402D111EDEAB7E002B62A1 /* FormatIndicatedCacheSerializer.swift in Sources */,
 				4B2B8E4D1D70141100FC4749 /* ImageProcessor.swift in Sources */,
 				D10946251C526CE8001408EB /* Image.swift in Sources */,
