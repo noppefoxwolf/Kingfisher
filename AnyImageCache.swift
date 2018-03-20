@@ -31,6 +31,14 @@ class AnyImageCacheBox {
   func imageCachedType(forKey key: String, processorIdentifier identifier: String) -> CacheType {
     fatalError()
   }
+  
+  func clearMemoryCache() {
+    fatalError()
+  }
+  
+  func clearDiskCache(completion handler: (()->())? = nil) {
+    fatalError()
+  }
 }
 
 class ImageCacheBox<X: ImageCacheType> : AnyImageCacheBox {
@@ -52,6 +60,14 @@ class ImageCacheBox<X: ImageCacheType> : AnyImageCacheBox {
   override func imageCachedType(forKey key: String, processorIdentifier identifier: String) -> CacheType {
     return base.imageCachedType(forKey: key, processorIdentifier: identifier)
   }
+  
+  override func clearMemoryCache() {
+    base.clearMemoryCache()
+  }
+  
+  override func clearDiskCache(completion handler: (()->())? = nil) {
+    base.clearDiskCache(completion: handler)
+  }
 }
 
 public final class AnyImageCache: ImageCacheType {
@@ -62,12 +78,25 @@ public final class AnyImageCache: ImageCacheType {
     return box.retrieveImage(forKey: key, options: options, completionHandler: completionHandler)
   }
   
-  public func store(_ image: Image, original: Data?, forKey key: String, processorIdentifier identifier: String, cacheSerializer serializer: CacheSerializer, toDisk: Bool, completionHandler: (() -> Void)?) {
+  public func store(_ image: Image,
+                    original: Data? = nil,
+                    forKey key: String,
+                    processorIdentifier identifier: String = "",
+                    cacheSerializer serializer: CacheSerializer = DefaultCacheSerializer.default,
+                    toDisk: Bool = true,
+                    completionHandler: (() -> Void)? = nil) {
     box.store(image, original: original, forKey: key, processorIdentifier: identifier, cacheSerializer: serializer, toDisk: toDisk, completionHandler: completionHandler)
   }
   
-  public func imageCachedType(forKey key: String, processorIdentifier identifier: String) -> CacheType {
+  public func imageCachedType(forKey key: String, processorIdentifier identifier: String = "") -> CacheType {
     return box.imageCachedType(forKey: key, processorIdentifier: identifier)
+  }
+  public func clearMemoryCache() {
+    box.clearMemoryCache()
+  }
+  
+  public func clearDiskCache(completion handler: (()->())? = nil) {
+    box.clearDiskCache(completion: handler)
   }
   
   private init(box: AnyImageCacheBox) {
@@ -76,6 +105,7 @@ public final class AnyImageCache: ImageCacheType {
   public init<X: ImageCacheType>(_ base: X) {
     box = ImageCacheBox(base)
   }
+  
   
   private let box: AnyImageCacheBox
 }

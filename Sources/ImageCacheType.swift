@@ -46,6 +46,9 @@ public protocol ImageCacheType {
               completionHandler: (() -> Void)?)
   
   func imageCachedType(forKey key: String, processorIdentifier identifier: String) -> CacheType
+  
+  func clearMemoryCache()
+  func clearDiskCache(completion handler: (()->())?)
 }
 
 extension ImageCacheType {
