@@ -328,7 +328,7 @@ class ImageViewExtensionTests: XCTestCase {
         _ = stubRequest("GET", URLString).andReturn(200)?.withBody(testImageData)
         let url = URL(string: URLString)!
         
-        imageView.kf.setImage(with: url, placeholder: nil, options: [.targetCache(cache1)], progressBlock: { (receivedSize, totalSize) -> Void in
+        imageView.kf.setImage(with: url, placeholder: nil, options: [.targetCache(AnyImageCache(cache1))], progressBlock: { (receivedSize, totalSize) -> Void in
             
         }) { (image, error, cacheType, imageURL) -> Void in
             
@@ -336,7 +336,7 @@ class ImageViewExtensionTests: XCTestCase {
             XCTAssertFalse(cache2.imageCachedType(forKey: URLString).cached, "This image should not be cached in cache2.")
             XCTAssertFalse(KingfisherManager.shared.cache.imageCachedType(forKey: URLString).cached, "This image should not be cached in default cache.")
             
-            self.imageView.kf.setImage(with: url, placeholder: nil, options: [.targetCache(cache2)], progressBlock: { (receivedSize, totalSize) -> Void in
+            self.imageView.kf.setImage(with: url, placeholder: nil, options: [.targetCache(AnyImageCache(cache2))], progressBlock: { (receivedSize, totalSize) -> Void in
                 
             }, completionHandler: { (image, error, cacheType, imageURL) -> Void in
                 
@@ -344,7 +344,7 @@ class ImageViewExtensionTests: XCTestCase {
                 XCTAssertTrue(cache2.imageCachedType(forKey: URLString).cached, "This image should be cached in cache2.")
                 XCTAssertFalse(KingfisherManager.shared.cache.imageCachedType(forKey: URLString).cached, "This image should not be cached in default cache.")
                 
-                clearCaches([cache1, cache2])
+                clearCaches([AnyImageCache(cache1), AnyImageCache(cache2)])
                 
                 expectation.fulfill()
             })
@@ -352,7 +352,7 @@ class ImageViewExtensionTests: XCTestCase {
         }
         
         waitForExpectations(timeout: 5, handler: { (error) -> Void in
-            clearCaches([cache1, cache2])
+            clearCaches([AnyImageCache(cache1), AnyImageCache(cache2)])
         })
     }
     

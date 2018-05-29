@@ -408,7 +408,7 @@ class KingfisherManagerTests: XCTestCase {
             let url = URL(string: URLString)!
             
             let p = RoundCornerImageProcessor(cornerRadius: 20)
-            self.manager.retrieveImage(with: url, options: [.processor(p), .cacheOriginalImage, .originalCache(originalCache)], progressBlock: nil) {
+            self.manager.retrieveImage(with: url, options: [.processor(p), .cacheOriginalImage, .originalCache(AnyImageCache(originalCache))], progressBlock: nil) {
                 image, error, cacheType, imageURL in
                 delay(0.1) {
                     let originalCached = originalCache.imageCachedType(forKey: URLString)
@@ -441,7 +441,7 @@ class KingfisherManagerTests: XCTestCase {
                 XCTAssertFalse(cached.cached)
                 
                 // No downloading will happen
-                self.manager.retrieveImage(with: URL(string: URLString)!, options: [.processor(p), .originalCache(originalCache)], progressBlock: nil) {
+                self.manager.retrieveImage(with: URL(string: URLString)!, options: [.processor(p), .originalCache(AnyImageCache(originalCache))], progressBlock: nil) {
                     image, error, cacheType, url in
                     XCTAssertNotNil(image)
                     XCTAssertEqual(cacheType, .none)

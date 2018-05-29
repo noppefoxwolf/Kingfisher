@@ -49,7 +49,7 @@ func cleanDefaultCache() {
     clearCaches([KingfisherManager.shared.cache])
 }
 
-func clearCaches(_ caches: [ImageCache]) {
+func clearCaches(_ caches: [AnyImageCache]) {
     for c in caches {
         c.clearMemoryCache()
         c.clearDiskCache()
